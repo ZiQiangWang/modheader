@@ -1,13 +1,29 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Store from '../store';
-import { HeaderProps } from '../store/useStore';
 import { Close } from '../components/styled';
 import Checkbox from '../components/Checkbox';
 import { HalfPixelBorder } from '../components/Border';
 
-const HeadersContainer = styled.div`
+const HeadersContainer = styled.div<{ disabled: boolean }>`
   padding: 10px;
+  position: relative;
+  ${(props) =>
+    props.disabled &&
+    css`
+      &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      * {
+        filter: grayscale();
+      }
+    `}
 `;
 
 const HeaderLine = styled.div`
@@ -37,24 +53,11 @@ const Input = styled.input`
   display: block;
 `;
 
-const Button = styled(HalfPixelBorder.withComponent('button'))`
-  height: 44px;
-  line-height: 44px;
-  text-align: center;
-  width: 100%;
-  outline: none;
-  background: white;
-  font-size: 16px;
-`;
-
-interface Props {
-  data: HeaderProps;
-}
-export default function Headers({ data }: Props) {
+export default function Headers() {
   const store = Store.useContainer();
   return (
-    <HeadersContainer>
-      {data.map((item, index) => (
+    <HeadersContainer disabled={!store.currentHeader.enabled}>
+      {store.currentHeader.data.map((item, index) => (
         <HeaderLine key={index}>
           <Checkbox
             value={item.use}
@@ -81,10 +84,6 @@ export default function Headers({ data }: Props) {
           <Close onClick={store.removeHeaderItem} data-index={index} />
         </HeaderLine>
       ))}
-
-      <Button onClick={store.addHeaderItem} borderColor="#dddddd">
-        添加
-      </Button>
     </HeadersContainer>
   );
 }

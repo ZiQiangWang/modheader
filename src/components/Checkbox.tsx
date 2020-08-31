@@ -9,7 +9,6 @@ const Label = styled.label<{ checked: boolean }>`
   display: inline-block;
   width: 24px;
   height: 24px;
-  border-radius: 12px;
   border: 1px solid orange;
   position: relative;
   cursor: pointer;
@@ -18,7 +17,7 @@ const Label = styled.label<{ checked: boolean }>`
 
   &::before {
     display: inline-block;
-    content: ' ';
+    content: '';
     width: 12px;
     border: 2px solid #fff;
     height: 5px;

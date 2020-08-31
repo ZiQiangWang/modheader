@@ -1,8 +1,8 @@
-import { getStorageHeaders } from './helper';
+import { getCurrentStorageHeaders } from './helper';
 
 class MyXMLHttpRequest extends window.XMLHttpRequest {
   public send(body?: Document | BodyInit | null) {
-    const headers = getStorageHeaders();
+    const headers = getCurrentStorageHeaders();
     Object.keys(headers).forEach((key) => {
       super.setRequestHeader(key, headers[key]);
     });
@@ -11,15 +11,16 @@ class MyXMLHttpRequest extends window.XMLHttpRequest {
   }
 }
 
-function proxyFetch(input: RequestInfo, init?: RequestInit) {
-  const headers = getStorageHeaders();
-
-  const reqHeaders = Object.assign({}, init ? init.headers : {}, headers);
-
-  const req = Object.assign({}, init || {}, { headers: reqHeaders });
-  return window.fetch(input, req);
-}
 export default function proxy() {
   window.XMLHttpRequest = MyXMLHttpRequest;
-  window.fetch = proxyFetch;
+  const oldFetch = window.fetch;
+
+  window.fetch = (input: RequestInfo, init?: RequestInit) => {
+    const headers = getCurrentStorageHeaders();
+
+    const reqHeaders = Object.assign({}, init ? init.headers : {}, headers);
+
+    const req = Object.assign({}, init || {}, { headers: reqHeaders });
+    return oldFetch(input, req);
+  };
 }

@@ -1,6 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { HalfPixelBorderBottom, HalfPixelBorder } from '../components/Border';
+import Add from '../assets/add.png';
 
 const TabsContainer = styled(HalfPixelBorderBottom)`
   display: flex;
@@ -9,7 +10,10 @@ const TabsContainer = styled(HalfPixelBorderBottom)`
   position: relative;
 `;
 
-const TabItem = styled(HalfPixelBorder)<{ selected?: boolean }>`
+const TabItem = styled(HalfPixelBorder)<{
+  selected?: boolean;
+  single?: boolean;
+}>`
   width: 32px;
   height: 32px;
   line-height: 32px;
@@ -25,6 +29,18 @@ const TabItem = styled(HalfPixelBorder)<{ selected?: boolean }>`
         display: none;
       }
     `}
+
+  ${(props) =>
+    props.single &&
+    css`
+      font-size: 0;
+    `}
+`;
+
+const Image = styled.img`
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
 `;
 
 interface Props {
@@ -62,8 +78,13 @@ export default function Tabs({ current, count, onChange, onCreate }: Props) {
           {item + 1}
         </TabItem>
       ))}
-      <TabItem borderRadius={16} borderColor="#dddddd" onClick={onCreate}>
-        +
+      <TabItem
+        borderRadius={16}
+        borderColor="#dddddd"
+        onClick={onCreate}
+        single
+      >
+        <Image src={Add} />
       </TabItem>
     </TabsContainer>
   );

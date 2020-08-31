@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Smile from '../assets/smile.png';
 
 export const Close = styled.div`
   display: inline-block;
@@ -15,4 +16,14 @@ export const Close = styled.div`
     background: red;
     transform: rotate(-90deg);
   }
+`;
+
+export const Icon = styled.div`
+  width: 40px;
+  height: 40px;
+  background: url(${Smile}) no-repeat center / contain;
+  position: fixed;
+  right: 0;
+  bottom: 40px;
+  z-index: 999999;
 `;

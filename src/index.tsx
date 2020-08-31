@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Store from './store';
-import './index.css';
 import App from './views/App';
+import proxy from './utils/proxy';
+import './index.css';
 
+proxy();
 ReactDOM.render(
   <React.StrictMode>
     <Store.Provider>
