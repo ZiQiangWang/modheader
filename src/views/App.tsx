@@ -4,6 +4,7 @@ import Store from '../store';
 import Tabs from './Tabs';
 import Headers from './Headers';
 import { Icon } from '../components/styled';
+import Float from '../components/Float';
 import Bar from './Bar';
 
 const Container = styled.div`
@@ -21,7 +22,9 @@ function App() {
   const store = Store.useContainer();
   return (
     <>
-      <Icon onClick={store.toggleVisible} />
+      <Float>
+        <Icon onClick={store.toggleVisible} />
+      </Float>
       {store.visibile && (
         <Container>
           <Tabs

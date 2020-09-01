@@ -22,8 +22,4 @@ export const Icon = styled.div`
   width: 40px;
   height: 40px;
   background: url(${Smile}) no-repeat center / contain;
-  position: fixed;
-  right: 0;
-  bottom: 40px;
-  z-index: 999999;
 `;

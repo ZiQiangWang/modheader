@@ -16,7 +16,7 @@ import {
 import { HeaderProps } from '../type';
 export default function useStore() {
   // 是否显示面板
-  const [visibile, setVisible] = useState(true);
+  const [visibile, setVisible] = useState(false);
 
   // 保存全部header的方案
   const [headers, setHeaders] = useState<HeaderProps[]>(() =>
