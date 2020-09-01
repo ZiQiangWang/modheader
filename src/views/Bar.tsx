@@ -6,6 +6,7 @@ import Add from '../assets/add.png';
 import Stop from '../assets/stop.png';
 import Success from '../assets/success.png';
 import Ashbin from '../assets/ashbin.png';
+import constants from '../constants';
 
 const BarContainer = styled(HalfPixelBorderBottom)`
   height: 40px;
@@ -22,7 +23,7 @@ const Image = styled.img`
 export default function Bar() {
   const store = Store.useContainer();
   return store.headers.length > 0 ? (
-    <BarContainer borderColor="#dddddd">
+    <BarContainer borderColor={constants.BORDER_COLOR}>
       <Image src={Add} onClick={store.addHeaderItem} />
       <Image
         src={store.currentHeader.enabled ? Success : Stop}

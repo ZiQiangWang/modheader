@@ -2,6 +2,7 @@ import React, { useMemo, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { HalfPixelBorderBottom, HalfPixelBorder } from '../components/Border';
 import Add from '../assets/add.png';
+import constants from '../constants';
 
 const TabsContainer = styled(HalfPixelBorderBottom)`
   display: flex;
@@ -66,21 +67,21 @@ export default function Tabs({ current, count, onChange, onCreate }: Props) {
   );
 
   return (
-    <TabsContainer borderColor="#dddddd">
+    <TabsContainer borderColor={constants.BORDER_COLOR}>
       {lst.map((item) => (
         <TabItem
           key={item}
           selected={current === item}
           onClick={() => onClick(item)}
           borderRadius={16}
-          borderColor="#dddddd"
+          borderColor={constants.BORDER_COLOR}
         >
           {item + 1}
         </TabItem>
       ))}
       <TabItem
         borderRadius={16}
-        borderColor="#dddddd"
+        borderColor={constants.BORDER_COLOR}
         onClick={onCreate}
         single
       >

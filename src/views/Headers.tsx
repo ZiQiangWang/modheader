@@ -4,6 +4,7 @@ import Store from '../store';
 import { Close } from '../components/styled';
 import Checkbox from '../components/Checkbox';
 import { HalfPixelBorder } from '../components/Border';
+import constants from '../constants';
 
 const HeadersContainer = styled.div<{ disabled: boolean }>`
   padding: 10px;
@@ -64,7 +65,7 @@ export default function Headers() {
             index={index}
             onChange={store.toggleHeaderItemUse}
           />
-          <InputWrapper borderColor="#dddddd">
+          <InputWrapper borderColor={constants.BORDER_COLOR}>
             <Input
               value={item.key}
               onChange={store.headerItemChange}
@@ -72,7 +73,7 @@ export default function Headers() {
               data-type="key"
             />
           </InputWrapper>
-          <InputWrapper borderColor="#dddddd">
+          <InputWrapper borderColor={constants.BORDER_COLOR}>
             <Input
               value={item.value}
               onChange={store.headerItemChange}

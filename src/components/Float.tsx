@@ -11,6 +11,7 @@ const Float = styled.span`
   display: inline-block;
   position: fixed;
   z-index: 999999;
+  opacity: 0;
   top: 0;
   left: 0;
   &.mod-header-float {
@@ -53,14 +54,27 @@ export default function Floater({ children }: PropsWithChildren<{}>) {
     }
   }, []);
 
-  useEffect(() => {
+  const reset = useCallback(() => {
+    data.current.windowWidth = document.documentElement.clientWidth;
+    data.current.windowHeight = document.documentElement.clientHeight;
     const { windowWidth, windowHeight } = data.current;
     data.current.distanceX = windowWidth - (ref.current?.clientWidth || 0);
     data.current.distanceY =
       windowHeight - (ref.current?.clientHeight || 0) - 160;
-    ref.current?.classList.remove('mod-header-float');
+    if (ref.current) {
+      ref.current.classList.remove('mod-header-float');
+      ref.current.style.opacity = '1';
+    }
     fnTranslate(data.current.distanceX, data.current.distanceY);
-  }, [fnTranslate, ref]);
+  }, [fnTranslate]);
+
+  useEffect(() => {
+    reset();
+    window.addEventListener('resize', reset);
+    return () => {
+      window.removeEventListener('resize', reset);
+    };
+  }, [reset]);
 
   const start = useCallback((e: TouchEvent<HTMLSpanElement>) => {
     const events = e.touches[0] || e;

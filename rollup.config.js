@@ -1,7 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
 import { uglify } from 'rollup-plugin-uglify';
-import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
+import babel from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
@@ -24,6 +24,7 @@ export default [
       }),
       babel({
         exclude: 'node_modules/**',
+        babelHelpers: 'bundled',
       }),
       uglify({
         output: { comments: false },
