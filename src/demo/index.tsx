@@ -41,6 +41,7 @@ export default function Demo() {
 
   const ajaxClick = useCallback(() => {
     setUrl('');
+    setErr(null);
     const xhr = new XMLHttpRequest();
     xhr.open(
       'GET',
