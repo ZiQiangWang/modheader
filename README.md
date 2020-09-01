@@ -12,7 +12,6 @@
 
 ## Demo
 
-[Here](https://hstory.cn/modheader/)
 ![img](https://github.com/ZiQiangWang/modheader/blob/master/public/demo.png?raw=true)
 
 Browse it on your phone: [https://hstory.cn/modheader/](https://hstory.cn/modheader/)
