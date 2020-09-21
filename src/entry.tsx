@@ -15,7 +15,7 @@ export function init(config: Config = {}) {
   const ele = document.createElement('div');
 
   ele.id = id;
-  document.body.appendChild(ele);
+  document.documentElement.appendChild(ele);
 
   ReactDOM.render(
     <React.StrictMode>
