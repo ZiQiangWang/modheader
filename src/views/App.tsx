@@ -15,7 +15,8 @@ const Container = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  box-shadow: 0px 1px 5px 2px lightgrey; ;
+  box-shadow: 0px 1px 5px 2px lightgrey;
+  background-color: #fff;
 `;
 
 function App() {
